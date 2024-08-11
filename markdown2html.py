@@ -15,9 +15,30 @@ def markdown_to_html(markdown_file, output_file):
         output_file (str): Path to the output HTML file.
     """
     with open(markdown_file, 'r') as md_file:
-        content = md_file.read()
+        lines = md_file.readlines()
 
-    html_content = "<html><body>\n" + content + "\n</body></html>"
+    html_content = "<html><body>\n"
+    
+    for line in lines:
+        line = line.strip()
+        
+        # Check for headers
+        if line.startswith("# "):
+            html_content += f"<h1>{line[2:]}</h1>\n"
+        elif line.startswith("## "):
+            html_content += f"<h2>{line[3:]}</h2>\n"
+        elif line.startswith("### "):
+            html_content += f"<h3>{line[4:]}</h3>\n"
+        elif line.startswith("#### "):
+            html_content += f"<h4>{line[5:]}</h4>\n"
+        elif line.startswith("##### "):
+            html_content += f"<h5>{line[6:]}</h5>\n"
+        elif line.startswith("###### "):
+            html_content += f"<h6>{line[7:]}</h6>\n"
+        else:
+            html_content += f"<p>{line}</p>\n"
+    
+    html_content += "</body></html>\n"
 
     with open(output_file, 'w') as html_file:
         html_file.write(html_content)
