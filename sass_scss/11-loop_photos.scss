@@ -1,0 +1,10 @@
+/* Task 11 - Create classes for each name with background images */
+@import '11-photos';
+
+$list-names: julien john sam damian;
+
+@each $name in $list-names {
+  .photo-#{$name} {
+    background: image-url("photos/#{$name}.jpg") no-repeat;
+  }
+}

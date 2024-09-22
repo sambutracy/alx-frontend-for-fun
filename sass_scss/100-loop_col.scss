@@ -1,0 +1,7 @@
+/* Task 100 - Create column classes with different widths */
+@for $i from 1 through 4 {
+    .col-#{$i} {
+      width: 100% / $i; // Calculating the width dynamically
+    }
+  }
+  
